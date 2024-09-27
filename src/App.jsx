@@ -6,6 +6,7 @@ import{MobileCarousel} from "./Mobile-carsoul";
 import{Desktopheader} from "./Desktop-header";
 import{MobileSearchBar} from "./header";
 import { DealsSection } from "./Dealsection";
+import DealsSwipeSection from "./Deals"
 import './index.css';
 
 export default function App() {
@@ -17,11 +18,7 @@ export default function App() {
     <Carousel/>
     <MobileCarousel/>
     <DealsSection/>
-  
-   
-
-</div>
-
-    
+    <DealsSwipeSection/>
+</div>  
   )
 }

@@ -27,8 +27,8 @@ export function Desktopheader() {
         {/* Search Bar */}
         <div className="flex items-center flex-grow h-[40px] bg-white rounded-md overflow-hidden shadow-sm mx-2">
           {/* Category Dropdown */}
-          <div className="h-full">
-            <select className="w-[50px] sm:w-[55px] h-full bg-gray-100 text-sm text-gray-700 p-2 rounded-l-md border-r">
+          <div className="h-full ">
+            <select className="w-auto sm:w-[55px] h-full bg-gray-100 text-sm text-gray-700 p-2 rounded-l-md border-r">
               <option value="all">All</option>
               <option value="electronics">Electronics</option>
               <option value="books">Books</option>
