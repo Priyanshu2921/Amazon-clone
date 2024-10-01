@@ -1,11 +1,18 @@
 import React, { useState } from "react";
-import { Menu, Search, ShoppingCart, LocationOn, Close, Person } from "@mui/icons-material";
+import { Menu, Close, ShoppingCart, Search,Person } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 export function AmazonHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleMenuToggle = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleSignInClick = () => {
+    
+    navigate("/Sign-up-Form"); 
   };
 
   return (
@@ -32,7 +39,9 @@ export function AmazonHeader() {
         {/* Right Section: Sign In and Cart */}
         <div className="flex items-center space-x-4">
           {/* Sign In Link */}
-          <button className="text-white text-sm">Sign in</button>
+          <button className="text-white text-sm" onClick={handleSignInClick}>
+            Sign in
+          </button>
 
           {/* Shopping Cart */}
           <div className="relative flex items-center">
@@ -71,6 +80,8 @@ export function AmazonHeader() {
   );
 }
 
+
+
 export function MobileSearchBar() {
   return (
     <div className="w-full bg-[#232f3e] p-3 md:hidden">
@@ -79,7 +90,7 @@ export function MobileSearchBar() {
         <input
           type="text"
           placeholder="Search Amazon.in"
-          className="flex-grow h-[40px] px-4 text-sm outline-none"
+          className="flex-grow h-[30px] px-4 text-sm outline-none"
         />
 
         {/* Search Button */}

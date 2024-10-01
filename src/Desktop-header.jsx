@@ -1,9 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"; 
 import { LocationOn, Search, ShoppingCart } from "@mui/icons-material";
 
-export function Desktopheader() {
+export function DesktopHeader() { // Changed to camel case for consistency
+  const navigate = useNavigate(); // Initialize the useNavigate hook
+
+  const handleSignInClick = () => {
+    navigate("/Sign-Up-Form"); // Navigate to the sign-up form when clicked
+  };
+
   return (
-    <header className="w-full h-[60px] bg-[#0f1111] p-2  items-center justify-between md:flex hidden">
+    <header className="w-full h-[60px] bg-[#0f1111] p-2 items-center justify-between md:flex hidden">
       <div className="flex items-center space-x-2 lg:space-x-4 w-full">
         {/* Logo */}
         <div className="flex items-center w-[100px] lg:w-[128px] h-[60px]">
@@ -27,7 +34,7 @@ export function Desktopheader() {
         {/* Search Bar */}
         <div className="flex items-center flex-grow h-[40px] bg-white rounded-md overflow-hidden shadow-sm mx-2">
           {/* Category Dropdown */}
-          <div className="h-full ">
+          <div className="h-full">
             <select className="w-auto sm:w-[55px] h-full bg-gray-100 text-sm text-gray-700 p-2 rounded-l-md border-r">
               <option value="all">All</option>
               <option value="electronics">Electronics</option>
@@ -57,7 +64,10 @@ export function Desktopheader() {
           </button>
 
           {/* Account & Lists */}
-          <div className="flex flex-col justify-center text-left w-[80px] sm:w-[110px] md:w-[130px]">
+          <div
+            className="flex flex-col justify-center text-left w-[80px] sm:w-[110px] md:w-[130px] cursor-pointer"
+            onClick={handleSignInClick} // Add the onClick event to handle routing
+          >
             <span className="font-bold leading-none text-[9px] sm:text-[10px] md:text-sm truncate">
               Hello, Sign in
             </span>

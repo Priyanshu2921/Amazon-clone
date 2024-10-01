@@ -75,7 +75,7 @@ export function DealsSection() {
   ];
 
   return (
-    <div className="relative mt-[200px] -translate-y-24 z-10"> 
+    <div className="relative  md:mt-[200px] -translate-y-24 z-10"> {/* Adjusted margin */}
       <div className="px-4"> 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {deals.map((deal, index) => (
@@ -89,7 +89,6 @@ export function DealsSection() {
           ))}
         </div>
       </div>
-      
     </div>
   );
 }

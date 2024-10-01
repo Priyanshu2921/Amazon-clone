@@ -1,12 +1,12 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
-import 'swiper/css'; // Import Swiper core styles
-import 'swiper/css/navigation'; // Import Navigation styles
+import 'swiper/css';
+import 'swiper/css/navigation'; 
 
 export default function DealsCarousel({ deals }) {
   return (
-    <div className="max-h-[350px] overflow-hidden">
+    <div className="max-h-[300px] overflow-hidden">
       <Swiper
         spaceBetween={10}
         slidesPerView={1}
