@@ -1,0 +1,155 @@
+[
+    {
+      "id": 1,
+      "name": "OnePlus Nord CE4",
+      "price": 25499,
+      "originalPrice": 26999,
+      "rating": 4.2,
+      "images": [
+        "https://m.media-amazon.com/images/I/61g1pqSjAhL._SX522_.jpg",
+        "https://m.media-amazon.com/images/I/61tRqUl4hyL._SX522_.jpg"
+      ],
+      "description": {
+        "processor": "Qualcomm Snapdragon 7 Gen 3",
+        "ram": "8GB",
+        "storage": "256GB",
+        "battery": "5500mAh",
+        "charging": "100W SuperVOOC"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Samsung Galaxy M32 (Light Blue, 64MP Quad Camera",
+      "price": 17499,
+      "originalPrice": 18999,
+      "rating": 4.1,
+      "images": [
+        "https://m.media-amazon.com/images/I/51kH6DymEAL._SX300_SY300_QL70_FMwebp_.jpg",
+        "https://m.media-amazon.com/images/I/81RekwZjcgL._SX522_.jpg"
+      ],
+      "description": {
+        "processor": "Mediatek Helio G80",
+        "ram": "6GB",
+        "storage": "128GB",
+        "battery": "6000mAh",
+        "charging": "15W"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Apple iPhone 13 (128GB) - Midnight",
+      "price": 69999,
+      "originalPrice": 72999,
+      "rating": 4.7,
+      "images": [
+        "https://m.media-amazon.com/images/I/61VuVU94RnL._SX569_.jpg",
+        "https://m.media-amazon.com/images/I/61cecOpZrxL._SX569_.jpg",
+        "https://m.media-amazon.com/images/I/71SfvBP1gBL._SX522_.jpg",
+        "https://m.media-amazon.com/images/I/71G44HUh7yL._SX522_.jpg"
+      ],
+      "description": {
+        "processor": "A15 Bionic",
+        "ram": "4GB",
+        "storage": "128GB",
+        "battery": "3095mAh",
+        "charging": "20W"
+      }
+    },
+    {
+      "id": 4,
+      "name": "OnePlus Nord CE 3 5G (Aqua Surge, 8GB RAM, 128GB Storage)",
+      "price": 18999,
+      "originalPrice": 19999,
+      "rating": 4.3,
+      "images": [
+        "https://m.media-amazon.com/images/I/41TmlehQnaL._SX300_SY300_QL70_FMwebp_.jpg",
+        "https://m.media-amazon.com/images/I/71MWoyX0CLL._SX679_.jpg",
+        "https://m.media-amazon.com/images/I/51JbKsONsUL._SX679_.jpg",
+        "https://m.media-amazon.com/images/I/61W3qtOuGIL._SX679_.jpg"
+      ],
+      "description": {
+        "processor": "Qualcomm Snapdragon 732G",
+        "ram": "8GB",
+        "storage": "128GB",
+        "battery": "5020mAh",
+        "charging": "33W"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Redmi Note 10 Pro",
+      "price": 18999,
+      "originalPrice": 19999,
+      "rating": 4.3,
+      "images": [
+        "https://m.media-amazon.com/images/I/71yn-3NR3SL._SY606_.jpg",
+        "https://m.media-amazon.com/images/I/61GQAkqz0iL._SX679_.jpg"
+      ],
+      "description": {
+        "processor": "Qualcomm Snapdragon 732G",
+        "ram": "8GB",
+        "storage": "128GB",
+        "battery": "5020mAh",
+        "charging": "33W"
+      }
+    },
+    {
+      "id": 6,
+      "name": "OnePlus Nord CE4",
+      "price": 25499,
+      "originalPrice": 26999,
+      "rating": 4.2,
+      "images": [
+        "https://m.media-amazon.com/images/I/61g1pqSjAhL._SX522_.jpg",
+        "https://m.media-amazon.com/images/I/61tRqUl4hyL._SX522_.jpg"
+      ],
+      "description": {
+        "processor": "Qualcomm Snapdragon 7 Gen 3",
+        "ram": "8GB",
+        "storage": "256GB",
+        "battery": "5500mAh",
+        "charging": "100W SuperVOOC"
+      }
+    },
+    {
+      "id": 7,
+      "name": "Samsung Galaxy M32 (Light Blue, 6GB RAM, 128GB | FHD+ sAMOLED 90Hz Display | 6000mAh Battery | 64MP Quad Camera",
+      "price": 17499,
+      "originalPrice": 18999,
+      "rating": 4.1,
+      "images": [
+        "https://m.media-amazon.com/images/I/71F4jU7MRUS._SX679_.jpg",
+        "https://m.media-amazon.com/images/I/61KzHebQTcS._SY879_.jpg",
+        "https://m.media-amazon.com/images/I/81ktb-4NKKS._SY879_.jpg",
+        "https://m.media-amazon.com/images/I/61xeBUEk7aS._SY879_.jpg",
+        "https://m.media-amazon.com/images/I/81uid1p8F-S._SY879_.jpg"
+
+      ],
+      "description": {
+        "processor": "Mediatek Helio G80",
+        "ram": "6GB",
+        "storage": "128GB",
+        "battery": "6000mAh",
+        "charging": "15W"
+      }
+    },
+    {
+      "id": 8,
+      "name": "Apple iPhone 13",
+      "price": 69999,
+      "originalPrice": 72999,
+      "rating": 4.7,
+      "images": [
+        "https://m.media-amazon.com/images/I/61VuVU94RnL._SX569_.jpg",
+        "https://m.media-amazon.com/images/I/61cecOpZrxL._SX569_.jpg"
+      ],
+      "description": {
+        "processor": "A15 Bionic",
+        "ram": "4GB",
+        "storage": "128GB",
+        "battery": "3095mAh",
+        "charging": "20W"
+      }
+    }
+  ]
+  

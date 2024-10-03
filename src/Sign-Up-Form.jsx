@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // For navigation
+import { useNavigate } from "react-router-dom"; 
 import * as yup from "yup";
 import { FaExclamationCircle } from "react-icons/fa";
 
@@ -17,14 +17,18 @@ const SignupForm = ({ setFirstName }) => {
   });
 
   const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
   const navigate = useNavigate();
 
   let userSchema = yup.object({
-    firstname: yup.string().required("Enter your name"),
+    firstname: yup.string().required("Enter your name").min(3),
     lastname: yup.string().required("Enter your last name"),
     email: yup.string().email("Enter a valid email").required("Email is required"),
-    phonenumber: yup.string().matches(/^\d{10}$/, "Phone number must be 10 digits"),
-    password: yup.string()
+    phonenumber: yup
+      .string()
+      .matches(/^\d{10}$/, "Phone number must be 10 digits"),
+    password: yup
+      .string()
       .min(8, "Password must be at least 8 characters")
       .matches(/[!@#$%^&,.?"|<>]/, "Must contain a symbol")
       .matches(/[0-9]/, "Must contain a number")
@@ -35,7 +39,9 @@ const SignupForm = ({ setFirstName }) => {
       .string()
       .oneOf([yup.ref("password")], "Passwords must match")
       .required("Confirm your password"),
-    age: yup.number().typeError("Age must be a number")
+    age: yup
+      .number()
+      .typeError("Age must be a number")
       .min(12, "You must be at least 12")
       .max(100, "Your age cannot exceed 100")
       .required("Age is required"),
@@ -48,10 +54,8 @@ const SignupForm = ({ setFirstName }) => {
     try {
       await userSchema.validate(formData, { abortEarly: false });
       setErrors({});
-
-      // Store the first name and navigate to the homepage
       setFirstName(formData.firstname);
-      navigate("/"); // Redirect to the home page
+      navigate("/"); 
     } catch (err) {
       const newErrors = {};
       err.inner.forEach((error) => {
@@ -61,117 +65,162 @@ const SignupForm = ({ setFirstName }) => {
     }
   };
 
+  const handleBlur = (e) => {
+    const { name } = e.target;
+    setTouched({
+      ...touched,
+      [name]: true,
+    });
+
+    userSchema
+      .validateAt(name, formData)
+      .then(() => setErrors({ ...errors, [name]: undefined }))
+      .catch((err) => setErrors({ ...errors, [name]: err.message }));
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
     });
+
+    if (touched[name]) {
+      userSchema
+        .validateAt(name, { [name]: value })
+        .then(() => setErrors({ ...errors, [name]: undefined }))
+        .catch((err) => setErrors({ ...errors, [name]: err.message }));
+    }
   };
 
   const handleSignIn = () => {
-    
-    navigate("/");
+    navigate("/"); 
+  };
+
+  const handleLogoClick = () => {
+    navigate("/"); 
   };
 
   return (
-    <div className="flex justify-center items-center ">
-      <div className="w-[400px] h-auto bg-white border border-gray-300 shadow-lg p-6 mt-5 rounded-md">
+    <div className="flex flex-col justify-center items-center">
+      {/* Amazon Image */}
       <div className="flex flex-col items-center mb-4">
-          <img
-            className="w-[200px] h-[200px] object-contain cursor-pointer filter bg-black invert"
-            src="https://pngimg.com/uploads/amazon/small/amazon_PNG11.png"
-            alt="Amazon Logo"
-          />
-        </div>
+        <img
+          onClick={handleLogoClick}
+          className="w-[200px] h-[200px] object-contain cursor-pointer filter bg-black invert"
+          src="https://pngimg.com/uploads/amazon/small/amazon_PNG11.png"
+          alt="Amazon Logo"
+        />
+      </div>
+
+      {/* Signup Form */}
+      <div className="w-[400px] h-auto bg-white border border-gray-300 shadow-lg p-6 mt-0 rounded-md">
         <h2 className="text-xl font-bold mb-4">Create an Account</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="firstname" className="block mb-1">First Name</label>
+            <label htmlFor="firstname" className="block mb-1">
+              First Name
+            </label>
             <input
               type="text"
               name="firstname"
               className="w-full border border-gray-300 p-2 rounded-md"
               onChange={handleChange}
+              onBlur={handleBlur}
             />
-            {errors.firstname && (
-              <span className="text-red-500 text-xs">
-                <FaExclamationCircle className="inline-block" />
+            {touched.firstname && errors.firstname && (
+              <span className="flex items-center text-red-500 text-xs">
+                <FaExclamationCircle className="mr-1" />
                 {errors.firstname}
               </span>
             )}
           </div>
           <div className="mb-4">
-            <label htmlFor="lastname" className="block mb-1">Last Name</label>
+            <label htmlFor="lastname" className="block mb-1">
+              Last Name
+            </label>
             <input
               type="text"
               name="lastname"
               className="w-full border border-gray-300 p-2 rounded-md"
               onChange={handleChange}
+              onBlur={handleBlur}
             />
-            {errors.lastname && (
-              <span className="text-red-500 text-xs">
-                <FaExclamationCircle className="inline-block" />
+            {touched.lastname && errors.lastname && (
+              <span className="flex items-center text-red-500 text-xs">
+                <FaExclamationCircle className="mr-1" />
                 {errors.lastname}
               </span>
             )}
           </div>
           <div className="mb-4">
-            <label htmlFor="email" className="block mb-1">Email</label>
+            <label htmlFor="email" className="block mb-1">
+              Email
+            </label>
             <input
               type="email"
               name="email"
               className="w-full border border-gray-300 p-2 rounded-md"
               onChange={handleChange}
+              onBlur={handleBlur}
             />
-            {errors.email && (
-              <span className="text-red-500 text-xs">
-                <FaExclamationCircle className="inline-block" />
+            {touched.email && errors.email && (
+              <span className="flex items-center text-red-500 text-xs">
+                <FaExclamationCircle className="mr-1" />
                 {errors.email}
               </span>
             )}
           </div>
           <div className="mb-4">
-            <label htmlFor="phonenumber" className="block mb-1">Phone Number</label>
+            <label htmlFor="phonenumber" className="block mb-1">
+              Phone Number
+            </label>
             <input
               type="text"
               name="phonenumber"
               className="w-full border border-gray-300 p-2 rounded-md"
               onChange={handleChange}
+              onBlur={handleBlur}
             />
-            {errors.phonenumber && (
-              <span className="text-red-500 text-xs">
-                <FaExclamationCircle className="inline-block" />
+            {touched.phonenumber && errors.phonenumber && (
+              <span className="flex items-center text-red-500 text-xs">
+                <FaExclamationCircle className="mr-1" />
                 {errors.phonenumber}
               </span>
             )}
           </div>
           <div className="mb-4">
-            <label htmlFor="age" className="block mb-1">Age</label>
+            <label htmlFor="age" className="block mb-1">
+              Age
+            </label>
             <input
               type="number"
               name="age"
               className="w-full border border-gray-300 p-2 rounded-md"
               onChange={handleChange}
+              onBlur={handleBlur}
             />
-            {errors.age && (
-              <span className="text-red-500 text-xs">
-                <FaExclamationCircle className="inline-block" />
+            {touched.age && errors.age && (
+              <span className="flex items-center text-red-500 text-xs">
+                <FaExclamationCircle className="mr-1" />
                 {errors.age}
               </span>
             )}
           </div>
           <div className="mb-4">
-            <label htmlFor="birthdate" className="block mb-1">Birthdate</label>
+            <label htmlFor="birthdate" className="block mb-1">
+              Birthdate
+            </label>
             <input
               type="date"
               name="birthdate"
               className="w-full border border-gray-300 p-2 rounded-md"
               onChange={handleChange}
+              onBlur={handleBlur}
             />
-            {errors.birthdate && (
-              <span className="text-red-500 text-xs">
-                <FaExclamationCircle className="inline-block" />
+            {touched.birthdate && errors.birthdate && (
+              <span className="flex items-center text-red-500 text-xs">
+                <FaExclamationCircle className="mr-1" />
                 {errors.birthdate}
               </span>
             )}
@@ -182,63 +231,72 @@ const SignupForm = ({ setFirstName }) => {
               name="gender"
               className="w-full border border-gray-300 p-2 rounded-md"
               onChange={handleChange}
+              onBlur={handleBlur}
             >
               <option value="">Select Gender</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
               <option value="other">Other</option>
             </select>
-            {errors.gender && (
-              <span className="text-red-500 text-xs">
-                <FaExclamationCircle className="inline-block" />
+            {touched.gender && errors.gender && (
+              <span className="flex items-center text-red-500 text-xs">
+                <FaExclamationCircle className="mr-1" />
                 {errors.gender}
               </span>
             )}
           </div>
           <div className="mb-4">
-            <label htmlFor="password" className="block mb-1">Password</label>
+            <label htmlFor="password" className="block mb-1">
+              Password
+            </label>
             <input
               type="password"
               name="password"
               className="w-full border border-gray-300 p-2 rounded-md"
               onChange={handleChange}
+              onBlur={handleBlur}
             />
-            {errors.password && (
-              <span className="text-red-500 text-xs">
-                <FaExclamationCircle className="inline-block" />
+            {touched.password && errors.password && (
+              <span className="flex items-center text-red-500 text-xs">
+                <FaExclamationCircle className="mr-1" />
                 {errors.password}
               </span>
             )}
           </div>
           <div className="mb-4">
-            <label htmlFor="confirmPassword" className="block mb-1">Confirm Password</label>
+            <label htmlFor="confirmPassword" className="block mb-1">
+              Confirm Password
+            </label>
             <input
               type="password"
               name="confirmPassword"
               className="w-full border border-gray-300 p-2 rounded-md"
               onChange={handleChange}
+              onBlur={handleBlur}
             />
-            {errors.confirmPassword && (
-              <span className="text-red-500 text-xs">
-                <FaExclamationCircle className="inline-block" />
+            {touched.confirmPassword && errors.confirmPassword && (
+              <span className="flex items-center text-red-500 text-xs">
+                <FaExclamationCircle className="mr-1" />
                 {errors.confirmPassword}
               </span>
             )}
           </div>
-          <button type="submit" className="w-full bg-yellow-500 text-white py-2 rounded-md hover:bg-blue-600">
-            Create Account
+          <button
+            type="submit"
+            className="w-full bg-yellow-400 text-black p-2 rounded-md font-semibold hover:bg-yellow-500"
+          >
+            Create
           </button>
         </form>
-        <h2 className="flex justify-center items-center pt-2">Already have an account? Sign In now</h2>
-
-        {/* Sign In button without form submission */}
-        <button onClick={handleSignIn} className="w-full bg-yellow-500 text-white py-2 rounded-md hover:bg-blue-600">
-          Sign in
-        </button>
+        <div className="text-xs text-gray-600 mt-4">
+          Already have an account?{" "}
+          <button onClick={handleSignIn} className="text-blue-600">
+            Sign in
+          </button>
+        </div>
       </div>
     </div>
   );
 };
 
- 
 export default SignupForm;

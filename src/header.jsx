@@ -1,18 +1,35 @@
 import React, { useState } from "react";
-import { Menu, Close, ShoppingCart, Search,Person } from "@mui/icons-material";
+import { Menu, Close, ShoppingCart, Search, Person } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux'; // Import useSelector
 
 export function AmazonHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
+  
+  const cartItems = useSelector((state) => state.cart); // Get the cart items from Redux store
+
+  // Calculate total quantity in the cart
+  const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   const handleMenuToggle = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   const handleSignInClick = () => {
-    
-    navigate("/Sign-up-Form"); 
+    navigate("/Sign-up-Form");
+  };
+
+  const handleLogoClick = () => {
+    navigate("/"); // Navigate to the main page when logo is clicked
+  };
+
+  const handleCartClick = () => {
+    navigate("/cart"); // Navigate to the cart page when clicked
+  };
+
+  const handelProduct = () => {
+    navigate("/ProductList");
   };
 
   return (
@@ -31,6 +48,7 @@ export function AmazonHeader() {
               className="w-[90px] h-[30px] object-contain cursor-pointer"
               src="https://pngimg.com/uploads/amazon/small/amazon_PNG11.png"
               alt="Amazon Logo"
+              onClick={handleLogoClick}
             />
             <span className="text-white text-xs">.in</span>
           </div>
@@ -44,10 +62,10 @@ export function AmazonHeader() {
           </button>
 
           {/* Shopping Cart */}
-          <div className="relative flex items-center">
+          <div className="relative flex items-center" onClick={handleCartClick}>
             <ShoppingCart style={{ color: "white" }} />
             <span className="absolute -top-1 -right-2 bg-yellow-400 rounded-full w-4 h-4 flex items-center justify-center text-black text-xs">
-              0
+              {totalQuantity > 0 ? totalQuantity : 0} {/* Show total quantity, will show 0 if cart is empty */}
             </span>
           </div>
         </div>
@@ -67,9 +85,9 @@ export function AmazonHeader() {
               {/* Menu Content */}
               <ul className="space-y-4 text-black">
                 <li><a href="#" className="text-lg">Home</a></li>
-                <li><a href="#" className="text-lg">Products</a></li>
+                <li><a href="#" className="text-lg" onClick={handelProduct}>Products</a></li>
                 <li><a href="#" className="text-lg">Orders</a></li>
-                <li><a href="#" className="text-lg">Cart</a></li>
+                <li><a href="#" className="text-lg" onClick={handleCartClick}>Cart</a></li>
                 {/* Add more menu items as needed */}
               </ul>
             </div>
@@ -79,8 +97,6 @@ export function AmazonHeader() {
     </>
   );
 }
-
-
 
 export function MobileSearchBar() {
   return (

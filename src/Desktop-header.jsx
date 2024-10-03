@@ -1,21 +1,37 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"; 
 import { LocationOn, Search, ShoppingCart } from "@mui/icons-material";
+import { useSelector } from 'react-redux'; // Import useSelector
 
-export function DesktopHeader() { // Changed to camel case for consistency
+export function DesktopHeader() {
   const navigate = useNavigate(); // Initialize the useNavigate hook
+  const cartItems = useSelector((state) => state.cart); // Assuming your cart slice structure
+
+  // Calculate total quantity in the cart
+  const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   const handleSignInClick = () => {
     navigate("/Sign-Up-Form"); // Navigate to the sign-up form when clicked
+  };
+
+  const handleCartClick = () => {
+    navigate("/cart"); // Navigate to the cart page when clicked
+  };
+
+  const handleLogoClick = () => {
+    navigate("/"); // Navigate to the main page when logo is clicked
   };
 
   return (
     <header className="w-full h-[60px] bg-[#0f1111] p-2 items-center justify-between md:flex hidden">
       <div className="flex items-center space-x-2 lg:space-x-4 w-full">
         {/* Logo */}
-        <div className="flex items-center w-[100px] lg:w-[128px] h-[60px]">
+        <div
+          className="flex items-center w-[100px] lg:w-[128px] h-[60px] cursor-pointer"
+          onClick={handleLogoClick} // Add the onClick event to handle routing
+        >
           <img
-            className="w-full h-full object-contain cursor-pointer"
+            className="w-full h-full object-contain"
             src="https://pngimg.com/uploads/amazon/small/amazon_PNG11.png"
             alt="Amazon Logo"
           />
@@ -87,11 +103,11 @@ export function DesktopHeader() { // Changed to camel case for consistency
           </div>
 
           {/* Shopping Cart */}
-          <div className="relative flex items-center">
+          <div className="relative flex items-center cursor-pointer" onClick={handleCartClick}>
             <div className="flex justify-center items-center relative">
               <ShoppingCart />
               <span className="absolute top-0 right-0 bg-yellow-400 rounded-md w-[16px] h-[16px] flex items-center justify-center text-black text-xs">
-                0
+                {totalQuantity} {/* Show total quantity, will show 0 if cart is empty */}
               </span>
             </div>
             <div className="ml-1 text-[12px] sm:text-[14px] md:text-[17px] font-bold">Cart</div>

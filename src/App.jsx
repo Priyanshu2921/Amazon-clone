@@ -7,16 +7,19 @@ import { DesktopHeader } from "./Desktop-header";
 import { MobileSearchBar } from "./header";
 import { DealsSection } from "./Dealsection";
 import SignupForm from "./Sign-Up-Form";
+import CartPage from './cart-page'; 
+import ProductList from "./ProductList";
+import ProductPage from './ProductPage'; // Importing Product Page Component
 import './index.css';
 
 function Layout({ children }) {
   const location = useLocation();
 
+  // Hide Header and Navbar for specific routes like Sign-Up Form
   const hideHeaderAndNavbar = location.pathname === '/Sign-Up-Form';
 
   return (
     <>
-     
       {!hideHeaderAndNavbar && (
         <>
           <DesktopHeader />
@@ -35,6 +38,7 @@ export default function App() {
     <Router>
       <Layout>
         <Routes>
+          {/* Home Route */}
           <Route
             path="/"
             element={
@@ -42,10 +46,19 @@ export default function App() {
                 <Carousel />
                 <MobileCarousel />
                 <DealsSection />
+                <ProductList /> {/* Displaying Product List */}
               </>
             }
           />
+
+          {/* Sign-Up Form Route */}
           <Route path="/Sign-Up-Form" element={<SignupForm />} />
+
+          {/* Cart Page Route */}
+          <Route path="/cart" element={<CartPage />} />
+
+          {/* Individual Product Details Route */}
+          <Route path="/product/:productId" element={<ProductPage />} /> {/* Product Page */}
         </Routes>
       </Layout>
     </Router>
