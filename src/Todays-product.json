@@ -1,0 +1,40 @@
+[
+  {
+    "id": 1,
+    "name": "Mahganya Wall Decor Light",
+    "price": 299,
+    "originalPrice": 999,
+    "rating": 3.5,
+    "images": [
+      "https://m.media-amazon.com/images/I/3196tRZB6hL._SX300_SY300_QL70_FMwebp_.jpg"
+    ],
+    "description": {
+      "description": "Mahganya Wall Mount Light is a perfect decor item for your living room or bedroom, offering a cozy ambiance with its warm white light.",
+      "deliveryDate": "Sat, 12 Oct"
+    }
+  },
+  {
+    "id": 2,
+    "name": "blissbells LED Stag Square Wall Lamp",
+    "price": 441,
+    "originalPrice": 2999,
+    "rating": 4.0,
+    "images": ["https://m.media-amazon.com/images/I/41UiG--934L.jpg"],
+    "description": {
+      "description": "This blissbells LED Stag Square Wall Lamp offers an elegant design for modern homes, delivering warm white lighting with a sleek aluminum finish.",
+      "deliveryDate": "Tue, 15 Oct"
+    }
+  },
+  {
+    "id": 3,
+    "name": "VazzLox Motion Sensor Light for Home (Pack of 2)",
+    "price": 469,
+    "originalPrice": 999,
+    "rating": 4.0,
+    "images": ["https://m.media-amazon.com/images/I/61RYR3FnVNL._SX679_.jpg"],
+    "description": {
+      "description": "ENERGY-EFFICIENT: VazzLox rechargeable motion sensor light automatically turn on when motion is detected within a 5-10 ft. range, automatically powers off after 15-20 seconds of inactivity, this magnetic motion activated light will lighting your path as you cross and shutting off soon after. ",
+      "deliveryDate": "Tue, 15 Oct"
+    }
+  }
+]

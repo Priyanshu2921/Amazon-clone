@@ -9,7 +9,9 @@ import { DealsSection } from "./Dealsection";
 import SignupForm from "./Sign-Up-Form";
 import CartPage from './cart-page'; 
 import ProductList from "./ProductList";
-import ProductPage from './ProductPage'; // Importing Product Page Component
+import TodaysProduct from "./Todays-deal"; 
+
+import ProductPage from './ProductPage'; 
 import './index.css';
 
 function Layout({ children }) {
@@ -46,9 +48,16 @@ export default function App() {
                 <Carousel />
                 <MobileCarousel />
                 <DealsSection />
-                <ProductList /> {/* Displaying Product List */}
+                <ProductList /> 
+            
+               {/* Displaying Product List */}
               </>
             }
+          />
+          {/* Today's Deal Route */}
+          <Route
+            path="/todays-deal"
+            element={<TodaysProduct />}
           />
 
           {/* Sign-Up Form Route */}

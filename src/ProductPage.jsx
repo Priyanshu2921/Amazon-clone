@@ -4,26 +4,25 @@ import products from "./product.json";
 import CloseIcon from "@mui/icons-material/Close";
 import StarBorderPurple500Icon from "@mui/icons-material/StarBorderPurple500";
 import StarIcon from "@mui/icons-material/Star";
-import { useDispatch } from "react-redux"; // Import useDispatch
-import { addToCart } from './store/cartslice'; // Import addToCart action
+import { useDispatch } from "react-redux";
+import { addToCart } from './store/cartslice';
 
 const ProductPage = () => {
   const { productId } = useParams();
   const product = products.find((p) => p.id === parseInt(productId));
-  const dispatch = useDispatch(); // Initialize dispatch
+  const dispatch = useDispatch();
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
   const [hoveredImage, setHoveredImage] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showMoreImages, setShowMoreImages] = useState(false);
+  const [quantity, setQuantity] = useState(1); // Quantity state
+  const [popupVisible, setPopupVisible] = useState(false); // Popup visibility state
 
-  // Discount percentage
   const discountPercentage = Math.round(
     ((product.originalPrice - product.price) / product.originalPrice) * 100
   );
-  // EMI calculation (12 months)
   const emi = Math.round(product.price / 12);
 
-  // Swipe handling for mobile view
   const handleSwipe = (direction) => {
     const currentIndex = product.images.indexOf(selectedImage);
     if (direction === "left" && currentIndex < product.images.length - 1) {
@@ -33,12 +32,10 @@ const ProductPage = () => {
     }
   };
 
-  // Handler for bulletins (dots) click
   const handleDotClick = (index) => {
     setSelectedImage(product.images[index]);
   };
 
-  // Star rating rendering based on rating value
   const renderStars = (rating) => {
     const filledStars = Math.floor(rating);
     const halfStar = rating % 1 !== 0;
@@ -65,15 +62,24 @@ const ProductPage = () => {
     );
   };
 
-  // Function to handle adding the product to the cart
-  const handleAddToCart = () => {
-    // Dispatch the addToCart action with the product data
-    dispatch(addToCart({ ...product, quantity: 1 })); // Add quantity property to the product
+ // Function to handle adding the product to the cart
+const handleAddToCart = () => {
+  dispatch(addToCart({ ...product, quantity })); // Pass selected quantity
+  setPopupVisible(true); // Show popup
+  setTimeout(() => setPopupVisible(false), 2000); // Hide popup after 2 seconds
+};
+
+
+  // Function to handle quantity change
+  const handleQuantityChange = (value) => {
+    if (quantity + value >= 1) {
+      setQuantity(quantity + value);
+    }
   };
 
   return (
     <div className="container mx-auto pl-4 pt-4 flex flex-col lg:flex-row">
-      {/* Product Images (Left Section) - For desktop view only */}
+      {/* Product Images (Left Section) */}
       <div className="hidden lg:flex w-1/10 flex-col space-y-2 overflow-hidden h-100">
         {product.images
           .slice(0, showMoreImages ? product.images.length : 4)
@@ -98,10 +104,9 @@ const ProductPage = () => {
           {product.images.length > 4 && (
             <button
               className="text-blue-500 flex items-center"
-              onClick={() => setShowMoreImages(!showMoreImages)} // Toggle between show more and show less
+              onClick={() => setShowMoreImages(!showMoreImages)}
             >
-              {showMoreImages ? "Show Less" : "Show More.."}{" "}
-              {/* Display button text based on state */}
+              {showMoreImages ? "Show Less" : "Show More.."}
             </button>
           )}
         </div>
@@ -110,7 +115,7 @@ const ProductPage = () => {
       {/* Carousel for mobile view */}
       <div className="lg:hidden w-full relative">
         <img
-          src={selectedImage} // Display only the selected image
+          src={selectedImage}
           alt="Selected Product"
           className="w-full h-96 object-contain"
         />
@@ -118,13 +123,13 @@ const ProductPage = () => {
         {/* Left and right swipe buttons for mobile view */}
         <button
           className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
-          onClick={() => handleSwipe("right")} // Change the direction to right for the previous image
+          onClick={() => handleSwipe("right")}
         >
           &lt;
         </button>
         <button
           className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
-          onClick={() => handleSwipe("left")} // Change the direction to left for the next image
+          onClick={() => handleSwipe("left")}
         >
           &gt;
         </button>
@@ -134,7 +139,7 @@ const ProductPage = () => {
           {product.images.map((_, index) => (
             <button
               key={index}
-              onClick={() => handleDotClick(index)} // Handle dot click
+              onClick={() => handleDotClick(index)}
               className={`w-3 h-3 rounded-full ${
                 selectedImage === product.images[index]
                   ? "bg-blue-500"
@@ -146,30 +151,28 @@ const ProductPage = () => {
       </div>
 
       {/* Main Image Section (Shared between both desktop and mobile) */}
-      <div className=" hidden sm:flex w-full  items-center justify-center">
+      <div className="hidden sm:flex w-full items-center justify-center">
         <img
           src={hoveredImage || selectedImage}
           alt="Selected Product"
-          className="w-auto h-auto max-h-96 cursor-pointer mb-2" // Adjusted margin-bottom
-          onClick={() => setIsModalOpen(true)} // Open modal on click
+          className="w-auto h-auto max-h-96 cursor-pointer mb-2"
+          onClick={() => setIsModalOpen(true)}
         />
       </div>
 
-      {/* Product Info (Right Section) - Shared between both desktop and mobile */}
+      {/* Product Info (Right Section) */}
       <div className="w-full lg:w-1/3">
         <h1 className="text-2xl font-bold">{product.name}</h1>
 
         <hr className="border-gray-600 mb-4" />
 
-        <div className="bg-red-800 rounded-lg p-4 max-w-xs mx-auto">
-          <h2 className="text-white text-center  text-2xl font-bold">
-            Great Indian Sale
-          </h2>
+        <div className="bg-red-600 text-white px-2 py-1 inline-block rounded-md text-sm font-semibold mb-2">
+          Great Indian Festival
         </div>
 
         <div className="flex flex-col">
           <div className="text-xl text-black-500 font-semibold mt-2">
-            <span className=" text-red-500">-{discountPercentage}% </span>
+            <span className="text-red-500">-{discountPercentage}% </span>
             <span>₹{product.price}</span>
           </div>
 
@@ -183,19 +186,10 @@ const ProductPage = () => {
           <p className="text-yellow-500 flex align-middle justify-start">
             Rating: {product.rating}
           </p>
-          {renderStars(product.rating)} {/* Render star rating */}
+          {renderStars(product.rating)}
         </div>
 
-        {/* Offers Section */}
-        <div className="mt-4 bg-red-100 p-2 rounded">
-          <p className="text-sm font-semibold text-red-600">In this sale</p>
-          <p className="text-sm">
-            Bank Offer: Flat INR 3000 Instant Discount on ALL Banks Card Txn
-          </p>
-          <p className="text-sm">No Cost EMI options available</p>
-        </div>
-
-        {/* Specifications Section */}
+        {/* Specifications */}
         <div className="mt-6">
           <h2 className="text-lg font-semibold">Specifications:</h2>
           <ul className="list-disc list-inside">
@@ -207,21 +201,31 @@ const ProductPage = () => {
           </ul>
         </div>
 
-        {/* EMI & Delivery Info */}
-        <div className="mt-4 flex items-center space-x-4">
-          <p className="text-sm">Starting EMI: ₹{emi}/month</p>
-          <p className="text-sm text-gray-500">
-            Delivery by: {new Date().toLocaleDateString()}
-          </p>
-        </div>
+        {/* Quantity Section */}
+        <div className="mt-4 flex items-center justify-center space-x-2">
+          <button
+            onClick={() => handleQuantityChange(-1)}
+            className="bg-gray-200 text-black py-1 px-3 rounded"
+          >
+            -
+          </button>
+          <span className="text-lg">{quantity}</span>
+          <button
+            onClick={() => handleQuantityChange(1)}
+            className="bg-gray-200 text-black py-1 px-3 rounded"
+          >
+            +
+          </button>
+        
 
         {/* Add to Cart Button */}
         <button
-          onClick={handleAddToCart} // Call add to cart handler
-          className="mt-4 bg-blue-500 text-white py-2 px-4 rounded"
+          onClick={handleAddToCart}
+          className="mt-0 bg-blue-500 text-white py-2 px-4 rounded"
         >
           Add to Cart
         </button>
+        </div>
       </div>
 
       {/* Modal for image zoom */}
@@ -229,17 +233,24 @@ const ProductPage = () => {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-4 rounded">
             <button
-              onClick={() => setIsModalOpen(false)} // Close modal
+              onClick={() => setIsModalOpen(false)}
               className="absolute top-2 right-2 text-gray-600"
             >
               <CloseIcon />
             </button>
             <img
               src={selectedImage}
-              alt="Product Zoomed"
-              className="max-h-[90vh] object-contain" // Ensure image fits within viewport
+              alt="Product Modal"
+              className="w-auto h-auto max-h-screen"
             />
           </div>
+        </div>
+      )}
+
+      {/* Popup for items added to cart */}
+      {popupVisible && (
+        <div className="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg">
+          {quantity} items added to cart!
         </div>
       )}
     </div>

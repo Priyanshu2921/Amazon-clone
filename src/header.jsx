@@ -29,7 +29,7 @@ export function AmazonHeader() {
   };
 
   const handelProduct = () => {
-    navigate("/ProductList");
+    navigate("/ProductList"); // Navigate to the product list page
   };
 
   return (

@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   return (
     <nav className="hidden md:flex bg-[#232f3e] p-2  justify-start">
       <ul className="flex space-x-8 pl-5 text-white whitespace-nowrap overflow-x-auto">
         <li className="relative cursor-pointer group">
-          Today's Deal
+          <Link to="/todays-deal">Today's Deal</Link>
           <div className="absolute bottom-0 left-0 w-full border-b-2 border-transparent group-hover:border-white transition-all duration-300"></div>
         </li>
         <li className="relative cursor-pointer group">
@@ -40,6 +41,3 @@ export const Navbar = () => {
     </nav>
   );
 };
-
-
-
