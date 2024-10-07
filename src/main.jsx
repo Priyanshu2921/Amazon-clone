@@ -8,9 +8,7 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* Wrap the app with Provider for Redux */}
     <Provider store={store}>
-      {/* PersistGate delays rendering of your app until persisted state is restored */}
       <PersistGate loading={null} persistor={persistor}>
         <App />
       </PersistGate>

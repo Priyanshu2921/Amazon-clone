@@ -15,8 +15,8 @@ const ProductPage = () => {
   const [hoveredImage, setHoveredImage] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showMoreImages, setShowMoreImages] = useState(false);
-  const [quantity, setQuantity] = useState(1); // Quantity state
-  const [popupVisible, setPopupVisible] = useState(false); // Popup visibility state
+  const [quantity, setQuantity] = useState(1); 
+  const [popupVisible, setPopupVisible] = useState(false); 
 
   const discountPercentage = Math.round(
     ((product.originalPrice - product.price) / product.originalPrice) * 100
@@ -221,7 +221,7 @@ const handleAddToCart = () => {
         {/* Add to Cart Button */}
         <button
           onClick={handleAddToCart}
-          className="mt-0 bg-blue-500 text-white py-2 px-4 rounded"
+          className="mt-0 bg-blue-500 text-white py-2 px-4 rounded hover:bg-black "
         >
           Add to Cart
         </button>
@@ -249,7 +249,7 @@ const handleAddToCart = () => {
 
       {/* Popup for items added to cart */}
       {popupVisible && (
-        <div className="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg">
+        <div className="fixed bottom-4 right-4 bg-red-600 text-white px-4 py-2 rounded shadow-lg">
           {quantity} items added to cart!
         </div>
       )}
