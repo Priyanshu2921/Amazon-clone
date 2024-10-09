@@ -18,7 +18,7 @@ export const Navbar = () => {
           <div className="absolute bottom-0 left-0 w-full border-b-2 border-transparent group-hover:border-white transition-all duration-300"></div>
         </li>
         <li className="relative cursor-pointer group">
-          Mobile
+          Mobiles
           <div className="absolute bottom-0 left-0 w-full border-b-2 border-transparent group-hover:border-white transition-all duration-300"></div>
         </li>
         <li className="relative cursor-pointer group">
