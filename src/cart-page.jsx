@@ -1,10 +1,11 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateCartItem, removeFromCart } from './store/cartslice';
+import { updateCartItem, removeFromCart , clearCartError} from './store/cartslice';
 import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
   const cartItems = useSelector((state) => state.cart); 
+  const error = useSelector((state) => state.cart.error); 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

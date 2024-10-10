@@ -3,6 +3,7 @@ import cartReducer from './cartslice';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; 
 import { combineReducers } from 'redux';
+import { thunk } from 'redux-thunk'; // Correct import of thunk
 
 // Persist configuration
 const persistConfig = {
@@ -19,9 +20,17 @@ const rootReducer = combineReducers({
 // Create a persisted reducer
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-// Create store with persisted reducer
+// Configure store with thunk middleware
 const store = configureStore({
   reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'],
+        ignoredActionPaths: ['register', 'rehydrate'],
+        ignoredPaths: ['_persist'],
+      },
+    }).concat(thunk), // Adding thunk as a function directly
 });
 
 // Create a persistor

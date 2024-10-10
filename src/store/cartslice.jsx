@@ -38,9 +38,17 @@ const cartSlice = createSlice({
     clearCart(state) {
       state.length = 0; // Clear the cart
     },
+
+    // New action for handling 404 or other errors
+    fetchCartError(state, action) {
+      state.error = action.payload; // Set error message
+    },
+    clearCartError(state) {
+      state.error = null; // Clear error message
+    },
   },
 });
 
 // Export actions and reducer
-export const { addToCart, updateCartItem, removeFromCart, clearCart } = cartSlice.actions;
+export const { addToCart, updateCartItem, removeFromCart, clearCart  , fetchCartError ,clearCartError} = cartSlice.actions;
 export default cartSlice.reducer;
