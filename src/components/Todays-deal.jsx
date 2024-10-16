@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import productsData from './Todays-product.json';
+import productsData from '../Todays-product.json';
 
 const TodaysProduct = () => {
   const [products, setProducts] = useState([]);

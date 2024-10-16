@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import products from './product.json';
+import products from '../product.json';
 
 const ProductList = () => {
   return (

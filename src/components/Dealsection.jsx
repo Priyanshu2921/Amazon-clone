@@ -1,4 +1,5 @@
 import React from 'react';
+import { dealImages } from '../Image'; 
 
 const DealCard = ({ title, imgSrc, offerLink, items }) => {
   return (
@@ -32,21 +33,17 @@ const DealCard = ({ title, imgSrc, offerLink, items }) => {
   );
 };
 
-
-
-
-
 export function DealsSection() {
   const deals = [
     {
       title: "Up to 80% off | Electronics & accessories",
-      imgSrc: "https://images-eu.ssl-images-amazon.com/images/G/31/Img23/Budget3/REC-PC_CC_758x608._SY608_CB564096366_.jpg",
+      imgSrc: dealImages.electronics, 
       offerLink: "#",
       items: [],
     },
     {
       title: "Starting ₹6,999 | Upgrade to 4K TVs",
-      imgSrc: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG23/TVs/nikita/1/1/Samsung_Mi_PC_CC_758x608._SY608_CB562051643_.jpg",
+      imgSrc: dealImages.tv,
       offerLink: "#",
       items: [],
     },
@@ -54,28 +51,18 @@ export function DealsSection() {
       title: "Minimum 50% off | Home, kitchen & more",
       imgSrc: null,
       offerLink: "#",
-      items: [
-        { img: "https://images-eu.ssl-images-amazon.com/images/G/31/OHL/Jup24/GW/PC_QC_1_2x._SY232_CB562243010_.jpg", label: "Kitchen appliance" },
-        { img: "https://images-eu.ssl-images-amazon.com/images/G/31/OHL/Jup24/GW/PC_QC-2_2x._SY232_CB562243010_.jpg", label: "Home decor" },
-        { img: "https://images-eu.ssl-images-amazon.com/images/G/31/OHL/Jup24/GW/PC_QC-3_2x._SY232_CB562243010_.jpg", label: "Furniture" },
-        { img: "https://images-eu.ssl-images-amazon.com/images/G/31/OHL/Jup24/GW/PC_QC-4_2x._SY232_CB562243010_.jpg", label: "Home improvement" },
-      ],
+      items: dealImages.homeItems, 
     },
     {
       title: "Up to 75% off | Refurbished products",
       imgSrc: null,
       offerLink: "#",
-      items: [
-        { img: "https://images-eu.ssl-images-amazon.com/images/G/31/certified_refurbished/anjaga/RenewedMarketing2024/Jupiter24/JupiterGW/1_PC_QC_2x._SY232_CB562140816_.jpg", label: "Laptops" },
-        { img: "https://images-eu.ssl-images-amazon.com/images/G/31/certified_refurbished/anjaga/RenewedMarketing2024/Jupiter24/JupiterGW/2_PC_QC_2x._SY232_CB562140816_.jpg", label: "Mobile " },
-        { img: "https://images-eu.ssl-images-amazon.com/images/G/31/certified_refurbished/anjaga/RenewedMarketing2024/Jupiter24/JupiterGW/3_PC_QC_2x._SY232_CB562140816_.jpg", label: "Headphones " },
-        { img: "https://images-eu.ssl-images-amazon.com/images/G/31/certified_refurbished/anjaga/RenewedMarketing2024/Jupiter24/JupiterGW/4_PC_QC_2x._SY232_CB562140816_.jpg", label: "Home & Kitchen " },
-      ],
+      items: dealImages.refurbishedItems, 
     },
   ];
 
   return (
-    <div className="relative  md:mt-[200px] -translate-y-24 z-10"> {/* Adjusted margin */}
+    <div className="relative md:mt-[200px] -translate-y-24 z-10"> {/* Adjusted margin */}
       <div className="px-4"> 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {deals.map((deal, index) => (

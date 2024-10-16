@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import {corosalimages} from "../Image"; 
 
 export function Carousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const images = [
-    "https://images-eu.ssl-images-amazon.com/images/G/31/img21/MA2024/GW/August/Unrec/BAU/21Aug/2-1._CB565867124_.jpg", // Image 1
-    "https://images-eu.ssl-images-amazon.com/images/G/31/img18/Lawn_Garden/Ud/2024/September/Dengue/Hero/GW-heros-Pc-8._CB564967377_.jpg", // Image 2
-    "https://images-eu.ssl-images-amazon.com/images/G/31/img22/Toys/GW/GW-Hero-PC_BBAug23_Soft-toys_with-Apay_Lifestyle_2x._CB597740150_.jpg", // Image 3
-  ];
+  const images = corosalimages; 
 
   const prevSlide = () => {
     const isFirstSlide = currentIndex === 0;
@@ -35,7 +32,7 @@ export function Carousel() {
         <div className="rounded-lg overflow-hidden shadow-lg">
           <img
             className="w-full h-full object-fill"
-            src={images[currentIndex]}
+            src={images[currentIndex]} // Display current image
             alt={`Image ${currentIndex + 1}`}
           />
         </div>

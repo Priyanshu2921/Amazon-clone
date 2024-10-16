@@ -1,25 +1,28 @@
+// DesktopHeader.jsx
+
 import React from "react";
 import { useNavigate } from "react-router-dom"; 
 import { LocationOn, Search, ShoppingCart } from "@mui/icons-material";
-import { useSelector } from 'react-redux'; // Import useSelector
+import { useSelector } from 'react-redux'; 
+import { headerImages } from '../Image'; // Importing headerImages from Image.js
 
 export function DesktopHeader() {
-  const navigate = useNavigate(); // Initialize the useNavigate hook
-  const cartItems = useSelector((state) => state.cart); // Assuming your cart slice structure
+  const navigate = useNavigate(); 
+  const cartItems = useSelector((state) => state.cart); 
 
   // Calculate total quantity in the cart
   const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   const handleSignInClick = () => {
-    navigate("/Sign-Up-Form"); // Navigate to the sign-up form when clicked
+    navigate("/Sign-Up-Form"); 
   };
 
   const handleCartClick = () => {
-    navigate("/cart"); // Navigate to the cart page when clicked
+    navigate("/cart"); 
   };
 
   const handleLogoClick = () => {
-    navigate("/"); // Navigate to the main page when logo is clicked
+    navigate("/"); 
   };
 
   return (
@@ -28,11 +31,11 @@ export function DesktopHeader() {
         {/* Logo */}
         <div
           className="flex items-center w-[100px] lg:w-[128px] h-[60px] cursor-pointer"
-          onClick={handleLogoClick} // Add the onClick event to handle routing
+          onClick={handleLogoClick} 
         >
           <img
             className="w-full h-full object-contain"
-            src="https://pngimg.com/uploads/amazon/small/amazon_PNG11.png"
+            src={headerImages.amazonLogo} // Using the imported logo image
             alt="Amazon Logo"
           />
           <span className="text-white hidden sm:inline-block">.in</span>
@@ -82,7 +85,7 @@ export function DesktopHeader() {
           {/* Account & Lists */}
           <div
             className="flex flex-col justify-center text-left w-[80px] sm:w-[110px] md:w-[130px] cursor-pointer"
-            onClick={handleSignInClick} // Add the onClick event to handle routing
+            onClick={handleSignInClick} 
           >
             <span className="font-bold leading-none text-[9px] sm:text-[10px] md:text-sm truncate">
               Hello, Sign in
@@ -107,7 +110,7 @@ export function DesktopHeader() {
             <div className="flex justify-center items-center relative">
               <ShoppingCart />
               <span className="absolute top-0 right-0 bg-yellow-400 rounded-md w-[16px] h-[16px] flex items-center justify-center text-black text-xs">
-                {totalQuantity} {/* Show total quantity, will show 0 if cart is empty */}
+                {totalQuantity} 
               </span>
             </div>
             <div className="ml-1 text-[12px] sm:text-[14px] md:text-[17px] font-bold">Cart</div>

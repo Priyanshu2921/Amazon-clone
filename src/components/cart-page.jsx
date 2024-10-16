@@ -1,11 +1,10 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateCartItem, removeFromCart , clearCartError} from './store/cartslice';
+import { updateCartItem, removeFromCart } from '../store/cartslice';
 import { useNavigate } from "react-router-dom";
-
+import { cartImages } from '../Image'; 
 const CartPage = () => {
   const cartItems = useSelector((state) => state.cart); 
-  const error = useSelector((state) => state.cart.error); 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -36,8 +35,8 @@ const CartPage = () => {
       {filteredCartItems.length === 0 ? (
         <div className="flex items-center">
           <img
-            src="https://m.media-amazon.com/images/G/31/cart/empty/kettle-desaturated._CB424694257_.svg" // Image when no items are present
-            alt="Image" 
+            src={cartImages.emptyCart} // Using the imported empty cart image
+            alt="Empty Cart" 
             className="w-[200px] h-[200px] mr-2" 
           />
           <p>

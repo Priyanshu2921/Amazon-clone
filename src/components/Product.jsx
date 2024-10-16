@@ -10,7 +10,7 @@ const Product = ({ product }) => {
       id: product.id,
       name: product.name,
       price: product.price,
-      quantity: 1, // default to 1, or based on user selection
+      quantity: 1, 
     }));
   };
 
