@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Menu, Close, ShoppingCart, Search, Person } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from 'react-redux'; // Import useSelector
+import { useSelector } from 'react-redux'; 
 
 export function AmazonHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

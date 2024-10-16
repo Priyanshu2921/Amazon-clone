@@ -13,8 +13,8 @@ const DealCard = ({ title, imgSrc, offerLink, items }) => {
         )}
         {items && items.length > 0 && (
           <div className="grid grid-cols-2 gap-4 mb-4">
-            {items.map((item, index) => (
-              <div key={index} className="flex flex-col items-center">
+            {items.map((item) => (
+              <div key={item.id || item.label} className="flex flex-col items-center">
                 <a href={offerLink} target="_blank" rel="noopener noreferrer">
                   <img src={item.img} alt={item.label} className="mb-4 h-[110px]" />
                 </a>
@@ -33,19 +33,20 @@ const DealCard = ({ title, imgSrc, offerLink, items }) => {
   );
 };
 
+
 export function DealsSection() {
   const deals = [
     {
       title: "Up to 80% off | Electronics & accessories",
       imgSrc: dealImages.electronics, 
       offerLink: "#",
-      items: [],
+      items: [], 
     },
     {
       title: "Starting ₹6,999 | Upgrade to 4K TVs",
       imgSrc: dealImages.tv,
       offerLink: "#",
-      items: [],
+      items: [], 
     },
     {
       title: "Minimum 50% off | Home, kitchen & more",
@@ -62,12 +63,12 @@ export function DealsSection() {
   ];
 
   return (
-    <div className="relative md:mt-[200px] -translate-y-24 z-10"> {/* Adjusted margin */}
+    <div className="relative md:mt-[200px] -translate-y-24 z-10">
       <div className="px-4"> 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {deals.map((deal, index) => (
+          {deals.map((deal) => (
             <DealCard
-              key={index}
+              key={deal.title} 
               title={deal.title}
               imgSrc={deal.imgSrc}
               offerLink={deal.offerLink}

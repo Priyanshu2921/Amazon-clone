@@ -1,5 +1,6 @@
 import React from 'react';
-import products from '../product.json';
+import products from '../JSON files/product.json';
+import { calculateDiscountPercentage } from '../utils/discountutils'; 
 
 const ProductList = () => {
   return (
@@ -11,7 +12,7 @@ const ProductList = () => {
       {/* Product Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 p-4">
         {products.map((product) => {
-          const discountPercentage = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+          const discountPercentage = calculateDiscountPercentage(product.originalPrice, product.price);
 
           return (
             <div key={product.id} className="bg-white rounded-lg shadow-lg p-4 hover:shadow-2xl relative transition-all duration-300">

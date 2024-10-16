@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import products from "../product.json";
+import products from "../JSON files/product.json";
 import CloseIcon from "@mui/icons-material/Close";
 import StarBorderPurple500Icon from "@mui/icons-material/StarBorderPurple500";
 import StarIcon from "@mui/icons-material/Star";
