@@ -236,7 +236,7 @@ const handleAddToCart = () => {
               onClick={() => setIsModalOpen(false)}
               className="absolute top-2 right-2 text-gray-600"
             >
-              <CloseIcon />
+              <CloseIcon className="bg-white" />
             </button>
             <img
               src={selectedImage}
