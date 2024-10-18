@@ -1,9 +1,9 @@
 // src/App.jsx
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
-import { AmazonHeader } from "./components/header";
-import { Navbar } from "./components/amazon-nav-bar";
-import { DesktopHeader } from "./components/Desktop-header";
-import { MobileSearchBar } from "./components/header";
+import { AmazonHeader } from "./components/Header/header";
+import { Navbar } from "./components/Header/amazon-nav-bar";
+import { DesktopHeader } from "./components/Header/Desktop-header";
+import { MobileSearchBar } from "./components/Header/header";
 import AppRoutes from "./route"; 
 import './index.css';
 

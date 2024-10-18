@@ -1,6 +1,6 @@
 import React from 'react';
-import products from '../JSON files/product.json';
-import { calculateDiscountPercentage } from '../utils/discountutils'; 
+import products from '../../JSON files/product.json';
+import { calculateDiscountPercentage } from '../../utils/discountutils'; 
 
 const ProductList = () => {
   return (

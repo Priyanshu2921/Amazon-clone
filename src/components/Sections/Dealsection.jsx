@@ -1,5 +1,5 @@
 import React from 'react';
-import { dealImages } from '../Image'; 
+import { dealImages } from '../Image/Image'; 
 
 const DealCard = ({ title, imgSrc, offerLink, items }) => {
   return (

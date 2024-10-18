@@ -1,10 +1,8 @@
-// DesktopHeader.jsx
-
 import React from "react";
 import { useNavigate } from "react-router-dom"; 
 import { LocationOn, Search, ShoppingCart } from "@mui/icons-material";
 import { useSelector } from 'react-redux'; 
-import { headerImages } from '../Image'; // Importing headerImages from Image.js
+import { headerImages } from '../Image/Image'; 
 
 export function DesktopHeader() {
   const navigate = useNavigate(); 
@@ -35,7 +33,7 @@ export function DesktopHeader() {
         >
           <img
             className="w-full h-full object-contain"
-            src={headerImages.amazonLogo} // Using the imported logo image
+            src={headerImages.amazonLogo}
             alt="Amazon Logo"
           />
           <span className="text-white hidden sm:inline-block">.in</span>

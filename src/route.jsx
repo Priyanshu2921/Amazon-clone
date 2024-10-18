@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
-import { Carousel } from "./components/Carsoul";
-import { MobileCarousel } from "./components/Mobile-carsoul";
-import { DealsSection } from "./components/Dealsection";
-import SignupForm from "./components/Sign-Up-Form";
-import CartPage from "./components/cart-page";
-import ProductList from "./components/ProductList";
-import TodaysProduct from "./components/Todays-deal";
-import ProductPage from "./components/ProductPage";
+import { Carousel } from "./components/Carsoul/Carsoul";
+import { MobileCarousel } from "./components/Carsoul/Mobile-carsoul";
+import { DealsSection } from "./components/Sections/Dealsection";
+import SignupForm from "./components/Sign-in_up_page/Sign-Up-Form";
+import CartPage from "./components/Cart/cart-page";
+import ProductList from "./components/Pages/ProductList";
+import TodaysProduct from "./components/Pages/Todays-deal";
+import ProductPage from "./components/Pages/ProductPage";
 
 const AppRoutes = () => {
   return (

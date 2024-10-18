@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateCartItem, removeFromCart } from '../store/cartslice';
+import { updateCartItem, removeFromCart } from '../../store/cartslice';
 import { useNavigate } from "react-router-dom";
-import { cartImages } from '../Image'; 
+import { cartImages } from '../Image/Image'; 
 const CartPage = () => {
   const cartItems = useSelector((state) => state.cart); 
   const dispatch = useDispatch();

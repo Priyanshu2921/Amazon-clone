@@ -1,6 +1,6 @@
 import React from 'react';
 import DealsCarousel from './DealCarousel'; 
-import deals from '../JSON files/deals.json'; 
+import deals from '../../JSON files/deals.json'; 
 
 export default function DealsSwipeSection() {
   return (

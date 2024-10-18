@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import {corosalimages} from "../Image"; 
+import {corosalimages} from "../Image/Image"; 
 
 export function Carousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
