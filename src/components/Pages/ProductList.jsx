@@ -1,8 +1,24 @@
-import React from 'react';
-import products from '../../JSON files/product.json';
+import React, { useEffect, useState } from 'react';
 import { calculateDiscountPercentage } from '../../utils/discountutils'; 
 
 const ProductList = () => {
+  const [products, setProducts] = useState([]);
+
+  // Fetch products from the Node.js API
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/products');
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+    
+    fetchProducts();
+  }, []);
+
   return (
     <div className="w-full px-0" style={{ backgroundColor: '#ffd77d' }}>
       <h1 className="text-3xl font-bold mb-6 pt-4 flex text-center justify-center">
