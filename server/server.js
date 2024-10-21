@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import productData from '../../E-commerce/src/JSON files/product.json' assert { type: "json" }; // Adjust the path as necessary
+import productData from '../../E-commerce/src/JSON files/product.json' assert { type: "json" };
 
 const app = express();
 const PORT = process.env.PORT || 5000;
