@@ -23,7 +23,7 @@ const ProductPage = () => {
     // Fetch product data from the API
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/products/${productId}`);
+        const response = await fetch(`http://localhost:5000/products/${productId}`);
 
         
         // Check if the response is OK and of type JSON
@@ -125,7 +125,7 @@ const ProductPage = () => {
   return (
     <div className="container mx-auto pl-4 pt-4 flex flex-col lg:flex-row">
       {/* Left Section: Product Images */}
-      <div className="hidden lg:flex w-1/10 flex-col space-y-2 overflow-hidden h-100">
+      <div className="hidden lg:flex w-1/10 flex-col object-contain space-y-2 overflow-hidden h-100">
         {product.images
           .slice(0, showMoreImages ? product.images.length : 4)
           .map((image, index) => (

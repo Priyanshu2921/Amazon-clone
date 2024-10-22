@@ -16,12 +16,12 @@ app.use(cors());
 app.use(express.json());
 
 // API route to serve all products data
-app.get('/api/products', (req, res) => {
+app.get('/products', (req, res) => {
   res.json(productData);
 });
 
 // API route to serve a specific product by ID
-app.get('/api/products/:id', (req, res) => {
+app.get('/products/:id', (req, res) => {
   const productId = parseInt(req.params.id);
   const product = productData.find((p) => p.id === productId);
   

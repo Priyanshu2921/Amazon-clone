@@ -1,5 +1,3 @@
-// ProductList.js
-
 import React, { useEffect, useState } from 'react';
 import { calculateDiscountPercentage } from '../../utils/discountutils'; 
 
@@ -10,7 +8,7 @@ const ProductList = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/products');
+        const response = await fetch('http://localhost:5000/products');
         const data = await response.json();
         setProducts(data);
       } catch (error) {
@@ -24,7 +22,7 @@ const ProductList = () => {
     const filteredProducts = products.filter(product => product.id >= 0 && product.id <= 8);
 
   return (
-    <div id="product-list" className="w-full px-0" style={{ backgroundColor: '#ffd77d' }}>
+    <div id="product-list" className="w-full px-0 rounded-lg" style={{ backgroundColor: '#ffd77d' }}>
       <h1 className="text-3xl font-bold mb-6 pt-4 flex text-center justify-center">
         Sale is on!!! Shop now
       </h1>
@@ -46,7 +44,7 @@ const ProductList = () => {
                 <img
                   src={product.images[0]}
                   alt={product.name}
-                  className="w-full h-48 object-cover rounded-md sm:h-40 md:h-48 lg:h-64 xl:h-72"
+                  className="w-full h-48 object-contain rounded-md sm:h-40 md:h-48 lg:h-64 xl:h-72"
                 />
 
                 <h2 className="text-xl font-semibold mt-4">{product.name}</h2>
