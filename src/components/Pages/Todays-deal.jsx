@@ -1,80 +1,101 @@
 import React, { useEffect, useState } from "react";
-import productsData from '../../JSON files/Todays-product.json';
+import { useNavigate } from "react-router-dom";
 
 const TodaysProduct = () => {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
 
-  // Fetch the product list from the JSON file
   useEffect(() => {
-    // Simulate fetching the product data
-    setProducts(productsData);
+    const fetchProducts = async () => {
+      const response = await fetch("https://fakestoreapi.com/products");
+      const data = await response.json();
+      setProducts(data);
+    };
+
+    fetchProducts();
   }, []);
+
+  const handleProductClick = (productId) => {
+    navigate(`/todays-deal/${productId}`);
+  };
 
   return (
     <div className="max-w-7xl mx-auto p-4">
       <h1 className="text-2xl font-bold mb-6">Today's Deals</h1>
-      <div className="space-y-6"> {/* Change to a vertical list */}
-        {products.map((product) => (
-          <div
-            key={product.id}
-            className="flex border-b pb-4 border-gray-200"
-          >
-            {/* Product Image */}
-            <div className="w-1/6 mr-4">
-              <img
-                src={product.images[0]} // Use the first image from the array
-                alt={product.name}
-                className="w-full h-auto object-cover"
-              />
-            </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {products.map((product) => {
+          const isBestSeller =
+            product.rating?.count > 300 && product.rating?.rate > 3;
 
-            {/* Product Details */}
-            <div className="w-3/4 flex flex-col justify-between">
-              {/* Title and Description */}
-              <div>
-                <h2 className="text-lg font-semibold text-gray-900">
-                  {product.name}
+          return (
+            <div
+              key={product.id}
+              className="border rounded-lg shadow-sm p-4 relative bg-white flex flex-col justify-between h-full"
+            >
+              {/* Conditionally Render Best Seller Badge */}
+              {isBestSeller && (
+                <div className="absolute top-2 left-2 bg-orange-500 text-white text-xs font-semibold px-2 py-1 rounded">
+                  Best Seller
+                </div>
+              )}
+
+              {/* Product Image */}
+              <div
+                className="cursor-pointer mb-4"
+                onClick={() => handleProductClick(product.id)}
+              >
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className="w-full h-40 object-contain"
+                />
+              </div>
+
+              {/* Product Details */}
+              <div className="flex flex-col flex-grow justify-between">
+                {/* Title */}
+                <h2
+                  className="text-sm font-semibold text-gray-800 hover:text-blue-600 hover:underline cursor-pointer"
+                  onClick={() => handleProductClick(product.id)}
+                >
+                  {product.title}
                 </h2>
-                <p className="text-sm text-gray-600 mb-1">
-                  {product.description.description}
-                </p>
 
                 {/* Rating and Reviews */}
-                <div className="flex items-center text-sm my-1">
-                  <span className="text-yellow-500">{product.rating} ★</span>
+                <div className="flex items-center text-sm my-2">
+                  <span className="text-yellow-500">
+                    {product.rating?.rate} ★
+                  </span>
                   <span className="ml-2 text-gray-500">
-                    {product.reviews} reviews {/* Adjusted to match JSON */}
+                    {product.rating?.count} reviews
                   </span>
                 </div>
-              </div>
 
-              {/* Price, Discount, and Delivery Info */}
-              <div>
-                <div className="flex items-center">
-                  <span className="text-red-600 text-xl font-semibold">
+                {/* Price and Offer Details */}
+                <div className="my-2">
+                  <span className="text-xl font-semibold text-red-600">
                     ₹{product.price}
                   </span>
-                  <span className="text-gray-500 text-sm line-through ml-2">
-                    M.R.P.: ₹{product.originalPrice} {/* Adjusted to match JSON */}
-                  </span>
-                  <span className="text-green-600 text-sm ml-2">
-                    ({product.discount}% off)
-                  </span>
+                  <div className="text-xs text-gray-500 line-through">
+                    ₹{(product.price * 1.1).toFixed(2)}{" "}
+                    {/* Example discount calculation */}
+                  </div>
+                  <div className="text-xs text-green-600">Save 10%</div>
+                  <div className="text-xs text-blue-600">
+                    FREE Delivery Tomorrow 6 am - 11 am
+                  </div>
                 </div>
-                <p className="text-sm text-gray-600 mt-1">
-                  FREE delivery: {product.description.deliveryDate} {/* Adjusted to match JSON */}
-                </p>
               </div>
 
-              {/* See Options Button */}
-              <div className="mt-2">
-                <button className="bg-blue-500 text-white px-4 py-2 rounded-md text-sm">
+              {/* Add to Cart Button */}
+              <div className="mt-4">
+                <button className="bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-bold py-1 px-2 rounded-full text-xs">
                   Add to cart
                 </button>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
